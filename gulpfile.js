@@ -80,13 +80,14 @@ gulp.task('fonts', function() {
 })
 
 // Cleaning 
-gulp.task('clean', function(callback) {
-  del('dist');
-  return cache.clearAll(callback);
+gulp.task('clean', function() {
+  return del('dist').then(function(cb) {
+    return cache.clearAll(cb);
+  });
 })
 
-gulp.task('clean:dist', function(callback) {
-  del(['dist/**/*', '!dist/images', '!dist/images/**/*'], callback)
+gulp.task('clean:dist', function() {
+  return del(['dist/**/*', '!dist/images', '!dist/images/**/*']);
 });
 
 // Build Sequences
