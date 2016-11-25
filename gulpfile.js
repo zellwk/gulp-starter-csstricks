@@ -11,6 +11,7 @@ var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var del = require('del');
 var runSequence = require('run-sequence');
+var minifyHTML = require("gulp-minify-html");
 
 // Basic Gulp task syntax
 gulp.task('hello', function() {
@@ -55,6 +56,7 @@ gulp.task('useref', function() {
     .pipe(useref())
     .pipe(gulpIf('*.js', uglify()))
     .pipe(gulpIf('*.css', cssnano()))
+    .pipe(minifyHTML())
     .pipe(gulp.dest('dist'));
 });
 
